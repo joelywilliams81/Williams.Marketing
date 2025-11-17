@@ -1,13 +1,14 @@
 :root {
-  --color-bg: #faf7f3;
-  --color-tinted: #fff9f6;
-  --color-primary: #e9b7c1;
-  --color-primary-dark: #d091a0;
-  --color-text: #3d3a37;
-  --color-muted: #6d6863;
+  --color-bg: #fdfaf7;
+  --color-tinted: #fff5f2;
+  --color-primary: #f2cfd7;
+  --color-primary-dark: #d79da7;
+  --color-text: #3b312f;
+  --color-muted: #766866;
   --color-white: #ffffff;
-  --shadow-soft: 0 15px 35px rgba(57, 52, 47, 0.08);
-  --radius: 1.5rem;
+  --color-line: rgba(59, 49, 47, 0.08);
+  --shadow-soft: 0 20px 50px rgba(57, 52, 47, 0.08);
+  --radius: 1.75rem;
   --transition: 250ms ease;
 }
 
@@ -20,7 +21,8 @@ body {
   font-family: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
   color: var(--color-text);
   background-color: var(--color-bg);
-  line-height: 1.6;
+  line-height: 1.7;
+  min-height: 100vh;
 }
 
 img {
@@ -62,15 +64,16 @@ textarea:focus-visible {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(233, 183, 193, 0.2)),
+  background: radial-gradient(circle at top, rgba(242, 207, 215, 0.4), transparent 55%),
+    linear-gradient(135deg, #fffefd 0%, #f7ebe7 55%, #fdfaf7 100%),
     url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80') center/cover;
 }
 
 .hero__overlay {
   position: absolute;
   inset: 0;
-  background: rgba(250, 247, 243, 0.9);
-  backdrop-filter: blur(1px);
+  background: rgba(253, 250, 247, 0.88);
+  backdrop-filter: blur(4px);
   z-index: 0;
 }
 
@@ -136,6 +139,9 @@ textarea:focus-visible {
 .hero__content {
   max-width: 40rem;
   margin-top: clamp(2rem, 6vw, 6rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .hero__content h1 {
@@ -145,7 +151,57 @@ textarea:focus-visible {
 
 .hero__text {
   font-size: 1.1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero__badge {
+  align-self: flex-start;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  padding: 0.4rem 1.25rem;
+  background: rgba(242, 207, 215, 0.25);
+  border: 1px solid rgba(242, 207, 215, 0.8);
+}
+
+.hero__highlights {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.hero__highlights li {
+  background: var(--color-white);
+  border-radius: 999px;
+  padding: 0.55rem 1.1rem;
+  font-size: 0.95rem;
+  box-shadow: 0 10px 25px rgba(57, 52, 47, 0.08);
+}
+
+.hero__stats {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.75rem;
+}
+
+.hero__stats div {
+  background: rgba(255, 255, 255, 0.65);
+  border-radius: 1.25rem;
+  padding: 1rem 1.25rem;
+  box-shadow: var(--shadow-soft);
+  text-align: center;
+}
+
+.hero__stat-number {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--color-text);
 }
 
 .hero__actions {
@@ -192,6 +248,10 @@ textarea:focus-visible {
   padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 5vw, 4rem);
 }
 
+.section--padded {
+  padding-bottom: clamp(3rem, 8vw, 7rem);
+}
+
 .section--tinted {
   background: var(--color-tinted);
 }
@@ -225,10 +285,18 @@ textarea:focus-visible {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  border: 1px solid var(--color-line);
+  transition: transform var(--transition), box-shadow var(--transition);
 }
 
 .card__icon {
   font-size: 2rem;
+}
+
+.card:hover,
+.card:focus-within {
+  transform: translateY(-6px);
+  box-shadow: 0 25px 45px rgba(57, 52, 47, 0.12);
 }
 
 .portfolio-grid {
@@ -242,6 +310,7 @@ textarea:focus-visible {
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow-soft);
+  border: 1px solid var(--color-line);
 }
 
 .portfolio-item__img {
@@ -273,6 +342,7 @@ textarea:focus-visible {
   border-radius: 50%;
   background: radial-gradient(circle, rgba(233, 183, 193, 0.7), rgba(250, 247, 243, 0.8));
   box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(233, 183, 193, 0.5);
 }
 
 .testimonials {
@@ -287,6 +357,7 @@ textarea:focus-visible {
   padding: 2rem;
   box-shadow: var(--shadow-soft);
   font-style: italic;
+  border: 1px solid var(--color-line);
 }
 
 .testimonial cite {
@@ -306,6 +377,12 @@ textarea:focus-visible {
   padding: 2rem;
   border-radius: var(--radius);
   box-shadow: var(--shadow-soft);
+  border: 1px solid var(--color-line);
+}
+
+.contact-form label {
+  font-weight: 600;
+  color: var(--color-text);
 }
 
 .contact-form input,
@@ -335,6 +412,7 @@ textarea:focus-visible {
   background: var(--color-bg);
   font-size: 0.9rem;
   color: var(--color-muted);
+  border-top: 1px solid var(--color-line);
 }
 
 .footer__social {
